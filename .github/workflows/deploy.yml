@@ -20,9 +20,10 @@ jobs:
         with:
           workload_identity_provider: 'projects/100056746728/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider'
           service_account: 'terraform-cicd@project-49180df3-40f5-4171-81c.iam.gserviceaccount.com'
+          token_format: 'access_token'
 
       - name: Configure Docker for Artifact Registry
-        run: gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev
+        run: gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev --quiet
 
       - name: Build Docker image
         run: |
